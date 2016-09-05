@@ -14,8 +14,8 @@ public:
 	string movieName;	// Name of Movie
 	int publishYear;	// Year movie was published
 
-	Movie(int movieid, string moviename, int publishyear)
-		: movieID(movieid), movieName(moviename), publishYear(publishyear)
+	Movie(int movie_id, string movie_name, int publish_year)
+		: movieID(movie_id), movieName(movie_name), publishYear(publish_year)
 	{ }
 };
 /* End of Movie Class */
