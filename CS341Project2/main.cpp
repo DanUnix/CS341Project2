@@ -30,5 +30,7 @@ using std::endl;
 
 int main()
 {
-
+	// Print Title of Program
+	cout << "** Netflix Movie Review Analysis **" << endl;
+	system("PAUSE");
 }
