@@ -246,3 +246,4 @@ ModelManifest.xml
 
 # Ignore CSV file type
 *.csv
+*.csv#
