@@ -29,7 +29,7 @@ using std::stoi;
 using std::sort;
 using std::cout;
 using std::endl;
-
+using std::setw;
 /*
  * inputMovies function
  * 
@@ -120,13 +120,17 @@ void inputReviews(vector<Review>& myReview)
  * Function displays the top-10 movies (based on average rating)
  *
  */
-void topTenMovies(vector<Movie>& myMovie)
+void topTenMovies(vector<Movie>& myMovie, vector<Review>& myReview)
 {
-	cout << endl << ">> Top-10 Movies <<" << endl;
-
-	// Display Title of movie CSV
-	cout << "";
-}
+	cout << endl << ">> Top-10 Movies <<" << endl << endl;
+	
+	// Display top ten movies
+	cout << "Rank" << setw(10) << "ID" << setw(10) << "Reviews" << setw(10) << "Avg" << setw(10) << "Name" << endl;
+	for (auto i = 1; i <= 10; ++i) {
+	
+		cout << i << "." << endl;
+	}
+}	
 /* End of topTenMovies */
 
 /* 
@@ -152,7 +156,7 @@ int main()
 	cout << ">> Reading reviews... " <<  reviews.size() << endl;
 
 	// Display top 10 movies
-	topTenMovies(movies);
+	topTenMovies(movies,reviews);
 
 	cout << "** DONE! ** " << endl;
 	system("PAUSE");
