@@ -113,8 +113,7 @@ void inputReviews(vector<Review>& myReview)
 		myReview.push_back(R);
 	}
 }
-/* End of inputReviews Function*/
-
+/* End of inputReviews Function */
 
 /* 
  * main Function
@@ -134,9 +133,12 @@ int main()
 	// Input reviews into vector
 	inputReviews(reviews);
 	
+	// Display number of movies and number of reviews
+	cout << ">> Reading movies... " << movies.size() << endl;
+	cout << ">> Reading reviews... " <<  reviews.size() << endl;
 
 	
-
+	cout << "** DONE! ** " << endl;
 	system("PAUSE");
 }
 /* End of Main Function */
