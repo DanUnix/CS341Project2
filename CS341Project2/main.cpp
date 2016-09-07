@@ -127,15 +127,15 @@ int main()
 	
 	// Create Movie vector to input movie data from file
 	vector<Movie> movies;
-	
-	// Create Review vector to input review data from file
-	vector<Review> reviews;
-
 	// Input movies into vector
 	inputMovies(movies);
-
+	// Create Review vector to input review data from file
+	vector<Review> reviews;
 	// Input reviews into vector
 	inputReviews(reviews);
+	
+
+	
 
 	system("PAUSE");
 }
