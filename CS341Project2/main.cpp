@@ -115,6 +115,20 @@ void inputReviews(vector<Review>& myReview)
 }
 /* End of inputReviews Function */
 
+/*
+ * topTenMovies Function
+ * Function displays the top-10 movies (based on average rating)
+ *
+ */
+void topTenMovies(vector<Movie>& myMovie)
+{
+	cout << endl << ">> Top-10 Movies <<" << endl;
+
+	// Display Title of movie CSV
+	cout << "";
+}
+/* End of topTenMovies */
+
 /* 
  * main Function
  *
@@ -137,7 +151,9 @@ int main()
 	cout << ">> Reading movies... " << movies.size() << endl;
 	cout << ">> Reading reviews... " <<  reviews.size() << endl;
 
-	
+	// Display top 10 movies
+	topTenMovies(movies);
+
 	cout << "** DONE! ** " << endl;
 	system("PAUSE");
 }
