@@ -17,6 +17,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <map>
 #include "Movie.h"
 #include "Review.h"
 
@@ -24,6 +25,8 @@
 using std::string;
 using std::ifstream;
 using std::vector;
+using std::map;
+using std::pair;
 using std::stringstream;
 using std::getline;
 using std::stoi;
@@ -32,7 +35,7 @@ using std::cout;
 using std::endl;
 using std::setw;
 using std::count;
-using std::map;
+
 /*
  * inputMovies function
  * 
@@ -158,8 +161,39 @@ void topTenMovies(vector<Movie>& myMovie, vector<Review>& myReview)
 }	
 /* End of topTenMovies */
 
+/*
+ * topTenUsers Function
+ * Display the top-10 users based on number of reviews submitted
+ *
+ */
+void topTenUsers(vector<Movie>& myMovie, vector<Review>& myReview)
+{
+	cout << ">> Top-10 Users <<" << endl << endl;
+
+	// Implement a map to put userIDs with Number of reviews together
+	map<int, int> myUserReview;
+
+	for (Review& myR : myReview)
+		myUserReview[myR.userID]++;
+
+	// user vector combination
+	vector<pair<int, int>> myNewUserInfo(myUserReview.begin(), myUserReview.end());
+
+	// Sort the new vector
+	sort(myNewUserInfo.begin(), myNewUserInfo.end(), [&](pair<int, int> a, pair<int, int> b) {
+		
+		return (a.second > b.second);
+	});
+
+	cout << "Rank" << "\t" << "ID" << "\t" << "Reviews" << endl;
+	for (auto i = 0; i < 10; ++i) {
+		cout << i + 1 << ".\t" << myNewUserInfo[i].first << "\t" << myNewUserInfo[i].second << endl;
+	}
+}
+/* End of topTenUsers */
+
 /* 
- * main Function
+ * main Function 
  *
  */
 int main()
@@ -179,9 +213,14 @@ int main()
 	// Display number of movies and number of reviews
 	cout << ">> Reading movies... " << movies.size() << endl;
 	cout << ">> Reading reviews... " <<  reviews.size() << endl;
-	// Display top 10 movies
+	// Display top 10 movies based on average rating
 	topTenMovies(movies,reviews);
+	cout << endl;
+	// Display top 10 users based on number of reviews
+	topTenUsers(movies, reviews);
+	cout << endl;
 
+	// Movie Information
 	cout << "** DONE! ** " << endl;
 	system("PAUSE");
 }
