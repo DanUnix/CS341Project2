@@ -15,7 +15,9 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <numeric>
 #include <algorithm>
+#include <map>
 #include "Movie.h"
 #include "Review.h"
 
@@ -30,6 +32,8 @@ using std::sort;
 using std::cout;
 using std::endl;
 using std::setw;
+using std::count;
+using std::map;
 /*
  * inputMovies function
  * 
@@ -42,8 +46,9 @@ void inputMovies(vector<Movie>& myMovie)
 
 
 	// String values to get Movie statistics
-	string line, movie_id, movie_name, publish_year;
-
+	string line, movie_id, movie_name, publish_year, avg, num_reviews;
+	avg = "0.0";
+	num_reviews = "0";
 	// Check if movies file exist, if not exit program
 	if (!movie_file.good()) {
 		cout << "Cannot open movie file!" << endl;
@@ -62,9 +67,10 @@ void inputMovies(vector<Movie>& myMovie)
 		// parse line:
 		getline(ss, movie_id, ',');
 		getline(ss, movie_name, ',');
-		getline(ss, publish_year);
-
-		Movie M(stoi(movie_id), movie_name, stoi(publish_year));
+		getline(ss, publish_year, ',');
+		getline(ss, avg, ',');
+		getline(ss, num_reviews);
+		Movie M(stoi(movie_id), movie_name, stoi(publish_year),stoi(avg),stoi(num_reviews));
 
 		// insert @ end
 		myMovie.push_back(M);
@@ -116,19 +122,49 @@ void inputReviews(vector<Review>& myReview)
 /* End of inputReviews Function */
 
 /*
+ * numOfReviews Function
+ * Function Returns the number of reviews of each specific review
+ *
+ */
+auto numOfReviews(vector<Movie>& myMovie, vector<Review>& myReview)
+{
+
+}
+
+/*
  * topTenMovies Function
  * Function displays the top-10 movies (based on average rating)
  *
  */
 void topTenMovies(vector<Movie>& myMovie, vector<Review>& myReview)
 {
+	
 	cout << endl << ">> Top-10 Movies <<" << endl << endl;
 	
 	// Display top ten movies
-	cout << "Rank" << setw(10) << "ID" << setw(10) << "Reviews" << setw(10) << "Avg" << setw(10) << "Name" << endl;
-	for (auto i = 1; i <= 10; ++i) {
+	cout << "Rank" << "\t" << "ID" << "\t" << "Reviews" << "\t" << "Avg" << "\t" << "Name" << endl;
 	
-		cout << i << "." << endl;
+	for (Review& myR : myReview) {
+		
+		myMovie[myR.movieID - 1].avg += myR.rating;
+		myMovie[myR.movieID - 1].nreviews++;
+		myMovie[myR.movieID - 1].num_of_reviews[myR.rating - 1]++;
+	}
+
+	// Calculate the average rating for each movie listed
+	for (Movie& myM : myMovie) {
+		myM.avg = (myM.avg / myM.nreviews);
+	}
+
+	// Sort the average ratings
+	sort(myMovie.begin(), myMovie.end(), [&](Movie a, Movie b) {
+		
+		return a.avg > b.avg;
+	});
+
+	for (auto i = 0; i < 10; ++i) {
+		cout << i+1 << ".\t" << myMovie[i].movieID << "\t" << myMovie[i].nreviews << "\t" 
+			<< myMovie[i].avg << "\t" << myMovie[i].movieName << "'" << endl;
 	}
 }	
 /* End of topTenMovies */
@@ -154,7 +190,6 @@ int main()
 	// Display number of movies and number of reviews
 	cout << ">> Reading movies... " << movies.size() << endl;
 	cout << ">> Reading reviews... " <<  reviews.size() << endl;
-
 	// Display top 10 movies
 	topTenMovies(movies,reviews);
 
