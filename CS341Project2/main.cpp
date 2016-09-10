@@ -32,6 +32,7 @@ using std::getline;
 using std::stoi;
 using std::sort;
 using std::cout;
+using std::cin;
 using std::endl;
 using std::setw;
 using std::count;
@@ -156,7 +157,7 @@ void topTenMovies(vector<Movie>& myMovie, vector<Review>& myReview)
 
 	for (auto i = 0; i < 10; ++i) {
 		cout << i+1 << ".\t" << myMovie[i].movieID << "\t" << myMovie[i].nreviews << "\t" 
-			<< myMovie[i].avg << "\t" << myMovie[i].movieName << "'" << endl;
+			<< myMovie[i].avg << "\t'" << myMovie[i].movieName << "'" << endl;
 	}
 }	
 /* End of topTenMovies */
@@ -192,6 +193,59 @@ void topTenUsers(vector<Movie>& myMovie, vector<Review>& myReview)
 }
 /* End of topTenUsers */
 
+/*
+ * movieInformation Function
+ * Interactive loop that allows the user to search by movie id.
+ * If movie is found, output data about the movie
+ */
+void movieInformation(vector<Movie>& myMovie, vector<Review>& myReview)
+{
+	cout << ">> Movie Information <<" << endl << endl;
+
+	// get movie ID from user
+	int movie_id;
+
+	// Sort movies by movieID
+	sort(myMovie.begin(), myMovie.end(), [&](Movie a, Movie b) {
+		
+		return (a.movieID < b.movieID);
+	});
+
+	// Prompt User to enter a movieID to be searched
+	cout << "Please enter a movie ID " << "[1.." << myMovie.size() << "], 0 to stop: ";
+	cin >> movie_id;
+	cout << endl;
+	// Create while loop to for interactive loop that will stop when user inputs 0
+	while (movie_id != 0) {
+		// Condition - if user inputs a movie id greater than number of movies or less than 0 
+		// Prompt them to try again
+		if (movie_id > myMovie.size() || movie_id < 0)
+			cout << "** Invalid movie id, please try again..." << endl;
+		else {
+			
+			// Output the data of the movie depending on the inputted movie ID
+			Movie selectedMovie = myMovie[movie_id - 1];	// Create new Movie object
+
+			cout << "Movie:" << "\t\t'" << selectedMovie.movieName << "'" << endl;
+			cout << "Year: " << "\t\t" << selectedMovie.publishYear << endl;
+			cout << "Avg rating:" << "\t" << selectedMovie.avg << endl;
+			cout << "Num reviews: " << "\t" << selectedMovie.nreviews << endl;
+			cout << "Num 1's:" << "\t" << selectedMovie.num_of_reviews[0] << endl;
+			cout << "Num 2's:" << "\t" << selectedMovie.num_of_reviews[1] << endl;
+			cout << "Num 3's:" << "\t" << selectedMovie.num_of_reviews[2] << endl;
+			cout << "Num 4's:" << "\t" << selectedMovie.num_of_reviews[3] << endl;
+			cout << "Num 5's:" << "\t" << selectedMovie.num_of_reviews[4] << endl;
+			
+		}
+		cout << endl;
+		// Prompt User to enter a movieID to be searched again
+		cout << "Please enter a movie ID" << "[1.." << myMovie.size() << "], 0 to stop: ";
+		cin >> movie_id;
+	} 
+
+	
+}
+/* End of movieInformation*/
 /* 
  * main Function 
  *
@@ -221,7 +275,10 @@ int main()
 	cout << endl;
 
 	// Movie Information
-	cout << "** DONE! ** " << endl;
+	movieInformation(movies, reviews);
+
+	// Done
+	cout << endl << endl << "** DONE! ** " << endl;
 	system("PAUSE");
 }
 /* End of Main Function */
