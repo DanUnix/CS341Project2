@@ -9,6 +9,7 @@
 
 #pragma once
 #include <string>
+#include <vector>
 
 // To use string
 using std::string;
@@ -17,14 +18,17 @@ using std::string;
 class Movie
 {
 public:
+	
 	Movie();			// Constructor
-	~Movie();			// Destructor 
+	~Movie();			// Destructor
 	int movieID;		// ID of Movie
 	string movieName;	// Name of Movie
 	int publishYear;	// Year movie was published
-
-	Movie(int movie_id, string movie_name, int publish_year)
-		: movieID(movie_id), movieName(movie_name), publishYear(publish_year)
+	double avg;			// The average rating
+	int nreviews;		// Used to calculate number of reviews
+	int num_of_reviews[5];
+	Movie(int movie_id, string movie_name, int publish_year, double my_avg, int my_review)
+		: movieID(movie_id), movieName(movie_name), publishYear(publish_year), avg(my_avg), nreviews(my_review)
 	{ }
 };
 /* End of Movie Class */
