@@ -176,7 +176,7 @@ void topTenMovies(vector<Movie>& myMovie, vector<Review>& myReview)
 int main()
 {
 	// Print Title of Program
-	cout << "** Netflix Movie Review Analysis **" << endl;
+	cout << "** Netflix Movie Review Analysis **" << endl << endl;
 	
 	// Create Movie vector to input movie data from file
 	vector<Movie> movies;
