@@ -15,6 +15,8 @@ Movie::Movie()
 {
 	avg = 0.0;
 	nreviews = 0;
+
+	// Initialize arrays to 0
 	num_of_reviews[0] = 0;
 	num_of_reviews[1] = 0;
 	num_of_reviews[2] = 0;
