@@ -13,9 +13,18 @@
 // Movie Constructor
 Movie::Movie()
 {
+	avg = 0.0;
+	nreviews = 0;
+	num_of_reviews[0] = 0;
+	num_of_reviews[1] = 0;
+	num_of_reviews[2] = 0;
+	num_of_reviews[3] = 0;
+	num_of_reviews[4] = 0;
+
 }
 
 // Movie Destructor
 Movie::~Movie()
 {
 }
+
