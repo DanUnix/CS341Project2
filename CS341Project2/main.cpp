@@ -121,16 +121,6 @@ void inputReviews(vector<Review>& myReview)
 /* End of inputReviews Function */
 
 /*
- * numOfReviews Function
- * Function Returns the number of reviews of each specific review
- *
- */
-auto numOfReviews(vector<Movie>& myMovie, vector<Review>& myReview)
-{
-
-}
-
-/*
  * topTenMovies Function
  * Function displays the top-10 movies (based on average rating)
  *
