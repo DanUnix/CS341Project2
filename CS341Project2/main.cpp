@@ -230,11 +230,7 @@ void movieInformation(vector<Movie>& myMovie, vector<Review>& myReview)
 			cout << "Year: " << "\t\t" << selectedMovie.publishYear << endl;
 			cout << "Avg rating:" << "\t" << selectedMovie.avg << endl;
 			cout << "Num reviews: " << "\t" << selectedMovie.nreviews << endl;
-			cout << "Num 1's:" << "\t" << selectedMovie.num_of_reviews[0] << endl;
-			cout << "Num 2's:" << "\t" << selectedMovie.num_of_reviews[1] << endl;
-			cout << "Num 3's:" << "\t" << selectedMovie.num_of_reviews[2] << endl;
-			cout << "Num 4's:" << "\t" << selectedMovie.num_of_reviews[3] << endl;
-			cout << "Num 5's:" << "\t" << selectedMovie.num_of_reviews[4] << endl;
+			
 			
 		}
 		cout << endl;
